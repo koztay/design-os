@@ -72,6 +72,9 @@ Create `product/sections/[section-id]/data.json`:
 - 5-10 realistic sample records
 - Varied content (short/long text, different statuses)
 - Edge cases (empty arrays, long descriptions)
+- **Use placeholder image URLs** for any image fields:
+  - `https://picsum.photos/seed/[unique-id]/[width]/[height]` for general images
+  - `https://images.unsplash.com/photo-[id]?w=[width]&q=80` for themed backgrounds
 
 ## Step 5: Generate types.ts
 

@@ -72,6 +72,8 @@ export function InvoiceList({
 - Mobile responsive (`sm:`, `md:`, `lg:`)
 - Light/dark mode (`dark:` variants)
 - Apply design tokens if defined
+- **Use inline styles for strict sizing** when Tailwind classes aren't respected (e.g., `style={{ width: '240px', minWidth: '240px', maxWidth: '240px' }}`)
+- **Use placeholder images** from picsum.photos or Unsplash for visual previews
 
 ## Step 6: Create Sub-Components (if needed)
 
