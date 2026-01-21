@@ -1,0 +1,228 @@
+{
+  "_meta": {
+    "models": {
+      "reports": "Each report is a community-submitted observation about an accessibility obstacle or improvement. Users can report problems they encounter, suggest improvements, or confirm that issues have been fixed.",
+      "pendingReports": "Reports that were submitted while offline and are waiting to sync when connectivity is restored. These show the local queue of unsent submissions.",
+      "verifications": "Votes from community members confirming or disputing a report's accuracy. Helps maintain data quality through crowdsourced validation."
+    },
+    "relationships": [
+      "Each Report has a Location (GPS coordinates with optional address)",
+      "Each Report can have many Verifications (community votes)",
+      "Pending Reports become regular Reports once synced to the server"
+    ]
+  },
+  "reports": [
+    {
+      "id": "rpt-001",
+      "type": "obstacle",
+      "status": "verified",
+      "title": "Broken sidewalk near metro station",
+      "description": "Large crack and raised concrete blocks blocking the accessible path from Florenc metro station to the bus terminal. Wheelchair users need to detour through the parking lot.",
+      "location": {
+        "latitude": 50.0905,
+        "longitude": 14.4378,
+        "address": "Křižíkova 148, Prague 8"
+      },
+      "photoUrl": "/photos/rpt-001.jpg",
+      "createdAt": "2024-01-15T09:23:00Z",
+      "updatedAt": "2024-01-18T14:30:00Z",
+      "authorName": "Martin K.",
+      "verifyCount": 12,
+      "disputeCount": 1,
+      "userVote": null
+    },
+    {
+      "id": "rpt-002",
+      "type": "improvement",
+      "status": "active",
+      "title": "New ramp installed at Národní třída",
+      "description": "The city installed a new accessible ramp at the corner of Národní and Spálená. Gentle slope, good surface, very wheelchair-friendly!",
+      "location": {
+        "latitude": 50.0811,
+        "longitude": 14.4197,
+        "address": "Národní 37, Prague 1"
+      },
+      "photoUrl": "/photos/rpt-002.jpg",
+      "createdAt": "2024-01-20T16:45:00Z",
+      "updatedAt": "2024-01-20T16:45:00Z",
+      "authorName": "Jana V.",
+      "verifyCount": 8,
+      "disputeCount": 0,
+      "userVote": "verify"
+    },
+    {
+      "id": "rpt-003",
+      "type": "obstacle",
+      "status": "active",
+      "title": "Construction blocking accessible entrance",
+      "description": "Building renovation has scaffolding completely blocking the wheelchair ramp at the main entrance. No temporary alternative provided.",
+      "location": {
+        "latitude": 50.0873,
+        "longitude": 14.4211,
+        "address": "Revoluční 25, Prague 1"
+      },
+      "photoUrl": "/photos/rpt-003.jpg",
+      "createdAt": "2024-01-22T11:15:00Z",
+      "updatedAt": "2024-01-22T11:15:00Z",
+      "authorName": "Petr H.",
+      "verifyCount": 5,
+      "disputeCount": 0,
+      "userVote": null
+    },
+    {
+      "id": "rpt-004",
+      "type": "fixed-issue",
+      "status": "resolved",
+      "title": "Pothole on Vinohradská repaired",
+      "description": "The deep pothole that was causing problems near the tram stop has been filled. Surface is now smooth and safe for wheelchairs.",
+      "location": {
+        "latitude": 50.0755,
+        "longitude": 14.4456,
+        "address": "Vinohradská 89, Prague 3"
+      },
+      "photoUrl": null,
+      "createdAt": "2024-01-10T08:30:00Z",
+      "updatedAt": "2024-01-23T09:00:00Z",
+      "authorName": "Eva M.",
+      "verifyCount": 15,
+      "disputeCount": 0,
+      "userVote": "verify"
+    },
+    {
+      "id": "rpt-005",
+      "type": "obstacle",
+      "status": "disputed",
+      "title": "Steep ramp at shopping center",
+      "description": "The ramp at the side entrance is too steep for most wheelchair users. Measured at approximately 12% grade.",
+      "location": {
+        "latitude": 50.0678,
+        "longitude": 14.4567,
+        "address": "Centrum Chodov, Prague 4"
+      },
+      "photoUrl": "/photos/rpt-005.jpg",
+      "createdAt": "2024-01-18T14:20:00Z",
+      "updatedAt": "2024-01-24T10:15:00Z",
+      "authorName": "Tomáš R.",
+      "verifyCount": 3,
+      "disputeCount": 6,
+      "userVote": "dispute"
+    },
+    {
+      "id": "rpt-006",
+      "type": "obstacle",
+      "status": "pending",
+      "title": "Temporary barrier at park entrance",
+      "description": "Metal barriers placed at Riegrovy sady park entrance for an event. No accessible bypass marked.",
+      "location": {
+        "latitude": 50.0789,
+        "longitude": 14.4401,
+        "address": "Riegrovy sady, Prague 2"
+      },
+      "photoUrl": "/photos/rpt-006.jpg",
+      "createdAt": "2024-01-25T17:30:00Z",
+      "updatedAt": "2024-01-25T17:30:00Z",
+      "authorName": "You",
+      "verifyCount": 0,
+      "disputeCount": 0,
+      "userVote": null
+    },
+    {
+      "id": "rpt-007",
+      "type": "improvement",
+      "status": "verified",
+      "title": "Tactile paving added at Anděl crossing",
+      "description": "New tactile guidance strips installed at the main pedestrian crossing. Helps with orientation and the crossing timing is good for slower mobility.",
+      "location": {
+        "latitude": 50.0703,
+        "longitude": 14.4033,
+        "address": "Anděl, Prague 5"
+      },
+      "photoUrl": "/photos/rpt-007.jpg",
+      "createdAt": "2024-01-08T12:00:00Z",
+      "updatedAt": "2024-01-20T16:00:00Z",
+      "authorName": "Lucie S.",
+      "verifyCount": 22,
+      "disputeCount": 0,
+      "userVote": null
+    },
+    {
+      "id": "rpt-008",
+      "type": "obstacle",
+      "status": "active",
+      "title": "Narrow passage due to outdoor seating",
+      "description": "Restaurant expanded their outdoor seating area, leaving less than 80cm passage on the sidewalk. Electric wheelchairs cannot pass.",
+      "location": {
+        "latitude": 50.0867,
+        "longitude": 14.4205,
+        "address": "Dlouhá 33, Prague 1"
+      },
+      "photoUrl": "/photos/rpt-008.jpg",
+      "createdAt": "2024-01-24T19:45:00Z",
+      "updatedAt": "2024-01-24T19:45:00Z",
+      "authorName": "Karel B.",
+      "verifyCount": 2,
+      "disputeCount": 0,
+      "userVote": null
+    }
+  ],
+  "pendingReports": [
+    {
+      "id": "pending-001",
+      "type": "obstacle",
+      "title": "Flooded underpass",
+      "description": "The pedestrian underpass at Vltavská is flooded after rain. About 10cm of standing water blocking wheelchair access.",
+      "location": {
+        "latitude": 50.1012,
+        "longitude": 14.4356,
+        "address": "Vltavská, Prague 7"
+      },
+      "photoUrl": "/photos/pending-001.jpg",
+      "createdAt": "2024-01-25T20:15:00Z",
+      "syncStatus": "pending-sync",
+      "retryCount": 0
+    },
+    {
+      "id": "pending-002",
+      "type": "fixed-issue",
+      "title": "Curb cut finally added",
+      "description": "After years of complaints, they added a proper curb cut at the corner of Korunní and Blanická.",
+      "location": {
+        "latitude": 50.0745,
+        "longitude": 14.4489,
+        "address": "Korunní/Blanická, Prague 2"
+      },
+      "photoUrl": null,
+      "createdAt": "2024-01-25T18:30:00Z",
+      "syncStatus": "failed",
+      "retryCount": 3,
+      "errorMessage": "Network timeout. Will retry automatically."
+    }
+  ],
+  "reportTypes": [
+    {
+      "id": "obstacle",
+      "label": "Obstacle",
+      "description": "Report a barrier or problem blocking wheelchair access",
+      "icon": "alert-triangle"
+    },
+    {
+      "id": "improvement",
+      "label": "Improvement",
+      "description": "Share a new accessibility feature or positive change",
+      "icon": "thumbs-up"
+    },
+    {
+      "id": "fixed-issue",
+      "label": "Fixed Issue",
+      "description": "Confirm that a previously reported problem has been resolved",
+      "icon": "check-circle"
+    }
+  ],
+  "currentLocation": {
+    "latitude": 50.0875,
+    "longitude": 14.4213,
+    "address": "Náměstí Republiky, Prague 1",
+    "accuracy": 10
+  },
+  "isOffline": false
+}
