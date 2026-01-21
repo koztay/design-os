@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "models": {
+      "language": "User's preferred language for the application interface. Supports Czech and English with immediate UI switching.",
+      "mobility": "Personalized mobility settings that affect route planning and accessibility filtering. Includes wheelchair type, terrain tolerances, speed, and surface preferences.",
+      "visual": "Visual accessibility settings for users with different visual needs. Includes high contrast mode, text sizing, and color blindness accommodations."
+    },
+    "relationships": [
+      "Language settings affect all UI text and labels throughout the app",
+      "Mobility settings are used by the routing engine to calculate accessible paths",
+      "Visual settings apply globally to all screens and components",
+      "All settings are stored locally on device without requiring authentication"
+    ]
+  },
+  "settings": {
+    "language": {
+      "current": "en",
+      "available": [
+        { "code": "cs", "label": "Czech", "nativeLabel": "Čeština" },
+        { "code": "en", "label": "English", "nativeLabel": "English" }
+      ]
+    },
+    "mobility": {
+      "wheelchairType": "manual",
+      "maxSlope": 6,
+      "curbHeightTolerance": 3,
+      "preferredPathWidth": 120,
+      "walkingSpeed": "normal",
+      "restStopsEnabled": true,
+      "restStopInterval": 15,
+      "avoidStairs": true,
+      "surfacePreferences": [
+        { "type": "paved", "label": "Paved / Asphalt", "preferred": true },
+        { "type": "cobblestone", "label": "Cobblestone", "preferred": false },
+        { "type": "gravel", "label": "Gravel", "preferred": false },
+        { "type": "grass", "label": "Grass", "preferred": false },
+        { "type": "dirt", "label": "Dirt / Unpaved", "preferred": false }
+      ]
+    },
+    "visual": {
+      "highContrast": false,
+      "textSize": "medium",
+      "colorBlindnessMode": "none",
+      "reduceMotion": false
+    }
+  }
+}

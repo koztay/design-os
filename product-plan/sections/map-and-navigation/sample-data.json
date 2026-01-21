@@ -1,0 +1,671 @@
+{
+  "_meta": {
+    "models": {
+      "accessibilityFeatures": "Barrier-free elements that help wheelchair users navigate, such as ramps, accessible crossings, or wide sidewalks. Each feature has location data and accessibility details.",
+      "obstacles": "Barriers or impediments that block or restrict wheelchair access, like construction work, damaged sidewalks, or stairs without ramps.",
+      "routes": "Calculated paths optimized for wheelchair accessibility, with step-by-step navigation instructions and information about features and obstacles along the way.",
+      "favoriteLocations": "User-saved locations for quick access to frequently visited destinations.",
+      "mapFilters": "Settings that control which accessibility data layers are visible on the map."
+    },
+    "relationships": [
+      "Each AccessibilityFeature has one Location (lat/lng coordinates)",
+      "Each Obstacle has one Location (lat/lng coordinates)",
+      "Each Route contains multiple NavigationSteps (turn-by-turn instructions)",
+      "Each Route references AccessibilityFeatures along the path",
+      "Each Route avoids Obstacles along the path",
+      "FavoriteLocations link to saved Location coordinates"
+    ]
+  },
+  "accessibilityFeatures": [
+    {
+      "id": "feat-001",
+      "type": "ramp",
+      "name": "Main Street Ramp",
+      "location": {
+        "lat": 50.0875,
+        "lng": 14.4213,
+        "address": "Main Street & 1st Avenue"
+      },
+      "metadata": {
+        "slope": 5.2,
+        "width": 120,
+        "surfaceType": "concrete",
+        "condition": "excellent"
+      },
+      "verified": true,
+      "lastUpdated": "2024-01-15"
+    },
+    {
+      "id": "feat-002",
+      "type": "crossing",
+      "name": "City Hall Accessible Crossing",
+      "location": {
+        "lat": 50.0882,
+        "lng": 14.4225,
+        "address": "City Hall Square"
+      },
+      "metadata": {
+        "slope": 3.1,
+        "width": 180,
+        "surfaceType": "tactile paving",
+        "condition": "good"
+      },
+      "verified": true,
+      "lastUpdated": "2024-01-10"
+    },
+    {
+      "id": "feat-003",
+      "type": "sidewalk",
+      "name": "Park Avenue Wide Sidewalk",
+      "location": {
+        "lat": 50.0895,
+        "lng": 14.4198,
+        "address": "Park Avenue (200-400 block)"
+      },
+      "metadata": {
+        "slope": 2.0,
+        "width": 250,
+        "surfaceType": "smooth asphalt",
+        "condition": "excellent"
+      },
+      "verified": true,
+      "lastUpdated": "2024-01-12"
+    },
+    {
+      "id": "feat-004",
+      "type": "ramp",
+      "name": "Library Entrance Ramp",
+      "location": {
+        "lat": 50.0868,
+        "lng": 14.4235,
+        "address": "Municipal Library, River Street"
+      },
+      "metadata": {
+        "slope": 4.8,
+        "width": 150,
+        "surfaceType": "concrete",
+        "condition": "good"
+      },
+      "verified": true,
+      "lastUpdated": "2024-01-08"
+    },
+    {
+      "id": "feat-005",
+      "type": "crossing",
+      "name": "Central Station Crossing",
+      "location": {
+        "lat": 50.0910,
+        "lng": 14.4180,
+        "address": "Central Station North Exit"
+      },
+      "metadata": {
+        "slope": 2.5,
+        "width": 200,
+        "surfaceType": "tactile paving",
+        "condition": "excellent"
+      },
+      "verified": true,
+      "lastUpdated": "2024-01-14"
+    },
+    {
+      "id": "feat-006",
+      "type": "sidewalk",
+      "name": "Shopping District Sidewalk",
+      "location": {
+        "lat": 50.0858,
+        "lng": 14.4252,
+        "address": "Shopping Street (100-300 block)"
+      },
+      "metadata": {
+        "slope": 1.5,
+        "width": 280,
+        "surfaceType": "smooth concrete",
+        "condition": "excellent"
+      },
+      "verified": true,
+      "lastUpdated": "2024-01-11"
+    },
+    {
+      "id": "feat-007",
+      "type": "ramp",
+      "name": "Metro Station Access Ramp",
+      "location": {
+        "lat": 50.0920,
+        "lng": 14.4165,
+        "address": "Metro Station A, Platform 2"
+      },
+      "metadata": {
+        "slope": 6.0,
+        "width": 140,
+        "surfaceType": "anti-slip concrete",
+        "condition": "good"
+      },
+      "verified": true,
+      "lastUpdated": "2024-01-09"
+    },
+    {
+      "id": "feat-008",
+      "type": "crossing",
+      "name": "Hospital Accessible Crossing",
+      "location": {
+        "lat": 50.0845,
+        "lng": 14.4270,
+        "address": "General Hospital Main Entrance"
+      },
+      "metadata": {
+        "slope": 2.8,
+        "width": 220,
+        "surfaceType": "tactile paving",
+        "condition": "excellent"
+      },
+      "verified": true,
+      "lastUpdated": "2024-01-13"
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "obs-001",
+      "type": "construction",
+      "name": "Bridge Street Construction Zone",
+      "location": {
+        "lat": 50.0890,
+        "lng": 14.4210,
+        "address": "Bridge Street (500-600 block)"
+      },
+      "severity": "high",
+      "status": "active",
+      "description": "Road construction blocking sidewalk access. Detour required.",
+      "reportedDate": "2024-01-10",
+      "estimatedClearance": "2024-02-28"
+    },
+    {
+      "id": "obs-002",
+      "type": "damaged-sidewalk",
+      "name": "Old Town Cracked Pavement",
+      "location": {
+        "lat": 50.0855,
+        "lng": 14.4240,
+        "address": "Old Town Square East Side"
+      },
+      "severity": "medium",
+      "status": "active",
+      "description": "Large cracks and uneven surface making wheelchair passage difficult.",
+      "reportedDate": "2024-01-05",
+      "estimatedClearance": null
+    },
+    {
+      "id": "obs-003",
+      "type": "stairs-without-ramp",
+      "name": "River Park Steps",
+      "location": {
+        "lat": 50.0872,
+        "lng": 14.4190,
+        "address": "River Park South Entrance"
+      },
+      "severity": "high",
+      "status": "active",
+      "description": "Stairs leading to park with no alternative ramp access.",
+      "reportedDate": "2023-12-20",
+      "estimatedClearance": null
+    },
+    {
+      "id": "obs-004",
+      "type": "temporary",
+      "name": "Market Day Vendor Stalls",
+      "location": {
+        "lat": 50.0865,
+        "lng": 14.4228,
+        "address": "Market Square"
+      },
+      "severity": "low",
+      "status": "active",
+      "description": "Weekly market stalls reduce sidewalk width. Active on Saturdays 8am-2pm.",
+      "reportedDate": "2024-01-12",
+      "estimatedClearance": null
+    },
+    {
+      "id": "obs-005",
+      "type": "construction",
+      "name": "Metro Extension Works",
+      "location": {
+        "lat": 50.0915,
+        "lng": 14.4175,
+        "address": "Station Square"
+      },
+      "severity": "high",
+      "status": "active",
+      "description": "Major metro construction affecting multiple sidewalks and crossings.",
+      "reportedDate": "2023-11-01",
+      "estimatedClearance": "2024-06-30"
+    },
+    {
+      "id": "obs-006",
+      "type": "damaged-sidewalk",
+      "name": "Industrial Area Potholes",
+      "location": {
+        "lat": 50.0835,
+        "lng": 14.4285,
+        "address": "Industrial Road (200 block)"
+      },
+      "severity": "medium",
+      "status": "verified",
+      "description": "Multiple potholes and surface damage.",
+      "reportedDate": "2024-01-08",
+      "estimatedClearance": "2024-03-15"
+    },
+    {
+      "id": "obs-007",
+      "type": "temporary",
+      "name": "Fallen Tree Debris",
+      "location": {
+        "lat": 50.0905,
+        "lng": 14.4195,
+        "address": "Green Park West Path"
+      },
+      "severity": "medium",
+      "status": "resolved",
+      "description": "Storm damage cleared as of Jan 14.",
+      "reportedDate": "2024-01-11",
+      "estimatedClearance": "2024-01-14"
+    },
+    {
+      "id": "obs-008",
+      "type": "stairs-without-ramp",
+      "name": "Historic Building Steps",
+      "location": {
+        "lat": 50.0848,
+        "lng": 14.4258,
+        "address": "Museum of History Main Entrance"
+      },
+      "severity": "high",
+      "status": "active",
+      "description": "Historic building with only stair access. Alternative entrance on west side.",
+      "reportedDate": "2023-10-15",
+      "estimatedClearance": null
+    }
+  ],
+  "routes": [
+    {
+      "id": "route-001",
+      "start": {
+        "lat": 50.0875,
+        "lng": 14.4213,
+        "name": "Current Location"
+      },
+      "end": {
+        "lat": 50.0882,
+        "lng": 14.4225,
+        "name": "City Hall"
+      },
+      "distance": 850,
+      "estimatedTime": 12,
+      "difficulty": "easy",
+      "accessibilityScore": 95,
+      "steps": [
+        {
+          "id": "step-001",
+          "instruction": "Head north on Main Street",
+          "distance": 150,
+          "duration": 2,
+          "location": {
+            "lat": 50.0875,
+            "lng": 14.4213
+          },
+          "type": "straight"
+        },
+        {
+          "id": "step-002",
+          "instruction": "Use accessible ramp at Main Street & 1st Avenue",
+          "distance": 0,
+          "duration": 1,
+          "location": {
+            "lat": 50.0878,
+            "lng": 14.4215
+          },
+          "type": "feature",
+          "featureId": "feat-001"
+        },
+        {
+          "id": "step-003",
+          "instruction": "Turn right onto 1st Avenue",
+          "distance": 200,
+          "duration": 3,
+          "location": {
+            "lat": 50.0878,
+            "lng": 14.4215
+          },
+          "type": "turn-right"
+        },
+        {
+          "id": "step-004",
+          "instruction": "Continue straight for 300m on wide sidewalk",
+          "distance": 300,
+          "duration": 4,
+          "location": {
+            "lat": 50.0880,
+            "lng": 14.4218
+          },
+          "type": "straight"
+        },
+        {
+          "id": "step-005",
+          "instruction": "Use accessible crossing at City Hall Square",
+          "distance": 0,
+          "duration": 1,
+          "location": {
+            "lat": 50.0882,
+            "lng": 14.4223
+          },
+          "type": "feature",
+          "featureId": "feat-002"
+        },
+        {
+          "id": "step-006",
+          "instruction": "Arrive at City Hall",
+          "distance": 200,
+          "duration": 1,
+          "location": {
+            "lat": 50.0882,
+            "lng": 14.4225
+          },
+          "type": "arrival"
+        }
+      ],
+      "featuresUsed": ["feat-001", "feat-002"],
+      "obstaclesAvoided": ["obs-001"]
+    },
+    {
+      "id": "route-002",
+      "start": {
+        "lat": 50.0882,
+        "lng": 14.4225,
+        "name": "City Hall"
+      },
+      "end": {
+        "lat": 50.0868,
+        "lng": 14.4235,
+        "name": "Municipal Library"
+      },
+      "distance": 1200,
+      "estimatedTime": 16,
+      "difficulty": "moderate",
+      "accessibilityScore": 88,
+      "steps": [
+        {
+          "id": "step-101",
+          "instruction": "Head south on City Hall Avenue",
+          "distance": 250,
+          "duration": 3,
+          "location": {
+            "lat": 50.0882,
+            "lng": 14.4225
+          },
+          "type": "straight"
+        },
+        {
+          "id": "step-102",
+          "instruction": "Turn left onto River Street",
+          "distance": 150,
+          "duration": 2,
+          "location": {
+            "lat": 50.0878,
+            "lng": 14.4228
+          },
+          "type": "turn-left"
+        },
+        {
+          "id": "step-103",
+          "instruction": "Continue on River Street for 400m",
+          "distance": 400,
+          "duration": 6,
+          "location": {
+            "lat": 50.0876,
+            "lng": 14.4230
+          },
+          "type": "straight"
+        },
+        {
+          "id": "step-104",
+          "instruction": "Slight slope ahead (4.8° incline)",
+          "distance": 100,
+          "duration": 2,
+          "location": {
+            "lat": 50.0870,
+            "lng": 14.4233
+          },
+          "type": "warning"
+        },
+        {
+          "id": "step-105",
+          "instruction": "Use entrance ramp at Municipal Library",
+          "distance": 0,
+          "duration": 1,
+          "location": {
+            "lat": 50.0868,
+            "lng": 14.4235
+          },
+          "type": "feature",
+          "featureId": "feat-004"
+        },
+        {
+          "id": "step-106",
+          "instruction": "Arrive at Municipal Library",
+          "distance": 300,
+          "duration": 2,
+          "location": {
+            "lat": 50.0868,
+            "lng": 14.4235
+          },
+          "type": "arrival"
+        }
+      ],
+      "featuresUsed": ["feat-004"],
+      "obstaclesAvoided": ["obs-002", "obs-008"]
+    },
+    {
+      "id": "route-003",
+      "start": {
+        "lat": 50.0895,
+        "lng": 14.4198,
+        "name": "Park Avenue"
+      },
+      "end": {
+        "lat": 50.0910,
+        "lng": 14.4180,
+        "name": "Central Station"
+      },
+      "distance": 2100,
+      "estimatedTime": 28,
+      "difficulty": "easy",
+      "accessibilityScore": 92,
+      "steps": [
+        {
+          "id": "step-201",
+          "instruction": "Head northwest on Park Avenue",
+          "distance": 600,
+          "duration": 8,
+          "location": {
+            "lat": 50.0895,
+            "lng": 14.4198
+          },
+          "type": "straight"
+        },
+        {
+          "id": "step-202",
+          "instruction": "Wide sidewalk with smooth surface (250cm width)",
+          "distance": 400,
+          "duration": 5,
+          "location": {
+            "lat": 50.0900,
+            "lng": 14.4192
+          },
+          "type": "feature",
+          "featureId": "feat-003"
+        },
+        {
+          "id": "step-203",
+          "instruction": "Turn right onto Station Road",
+          "distance": 350,
+          "duration": 5,
+          "location": {
+            "lat": 50.0905,
+            "lng": 14.4188
+          },
+          "type": "turn-right"
+        },
+        {
+          "id": "step-204",
+          "instruction": "Use accessible crossing at Central Station",
+          "distance": 0,
+          "duration": 1,
+          "location": {
+            "lat": 50.0908,
+            "lng": 14.4182
+          },
+          "type": "feature",
+          "featureId": "feat-005"
+        },
+        {
+          "id": "step-205",
+          "instruction": "Continue to station entrance",
+          "distance": 250,
+          "duration": 3,
+          "location": {
+            "lat": 50.0909,
+            "lng": 14.4181
+          },
+          "type": "straight"
+        },
+        {
+          "id": "step-206",
+          "instruction": "Use Metro Station access ramp",
+          "distance": 0,
+          "duration": 1,
+          "location": {
+            "lat": 50.0910,
+            "lng": 14.4180
+          },
+          "type": "feature",
+          "featureId": "feat-007"
+        },
+        {
+          "id": "step-207",
+          "instruction": "Arrive at Central Station",
+          "distance": 500,
+          "duration": 5,
+          "location": {
+            "lat": 50.0910,
+            "lng": 14.4180
+          },
+          "type": "arrival"
+        }
+      ],
+      "featuresUsed": ["feat-003", "feat-005", "feat-007"],
+      "obstaclesAvoided": ["obs-005", "obs-007"]
+    }
+  ],
+  "favoriteLocations": [
+    {
+      "id": "fav-001",
+      "name": "Home",
+      "location": {
+        "lat": 50.0875,
+        "lng": 14.4213,
+        "address": "123 Main Street, Apartment 4B"
+      },
+      "icon": "home",
+      "createdDate": "2024-01-01"
+    },
+    {
+      "id": "fav-002",
+      "name": "Work - City Hall",
+      "location": {
+        "lat": 50.0882,
+        "lng": 14.4225,
+        "address": "City Hall, Office 302"
+      },
+      "icon": "work",
+      "createdDate": "2024-01-01"
+    },
+    {
+      "id": "fav-003",
+      "name": "Municipal Library",
+      "location": {
+        "lat": 50.0868,
+        "lng": 14.4235,
+        "address": "River Street 45"
+      },
+      "icon": "library",
+      "createdDate": "2024-01-03"
+    },
+    {
+      "id": "fav-004",
+      "name": "Central Station",
+      "location": {
+        "lat": 50.0910,
+        "lng": 14.4180,
+        "address": "Station Square 1"
+      },
+      "icon": "train",
+      "createdDate": "2024-01-05"
+    }
+  ],
+  "mapFilters": [
+    {
+      "id": "filter-ramps",
+      "label": "Ramps",
+      "category": "accessibilityFeatures",
+      "type": "ramp",
+      "color": "green",
+      "enabled": true
+    },
+    {
+      "id": "filter-crossings",
+      "label": "Accessible Crossings",
+      "category": "accessibilityFeatures",
+      "type": "crossing",
+      "color": "green",
+      "enabled": true
+    },
+    {
+      "id": "filter-sidewalks",
+      "label": "Wide Sidewalks",
+      "category": "accessibilityFeatures",
+      "type": "sidewalk",
+      "color": "green",
+      "enabled": true
+    },
+    {
+      "id": "filter-construction",
+      "label": "Construction Zones",
+      "category": "obstacles",
+      "type": "construction",
+      "color": "red",
+      "enabled": true
+    },
+    {
+      "id": "filter-damaged",
+      "label": "Damaged Sidewalks",
+      "category": "obstacles",
+      "type": "damaged-sidewalk",
+      "color": "orange",
+      "enabled": true
+    },
+    {
+      "id": "filter-stairs",
+      "label": "Stairs Without Ramps",
+      "category": "obstacles",
+      "type": "stairs-without-ramp",
+      "color": "red",
+      "enabled": true
+    },
+    {
+      "id": "filter-temporary",
+      "label": "Temporary Obstacles",
+      "category": "obstacles",
+      "type": "temporary",
+      "color": "yellow",
+      "enabled": false
+    }
+  ]
+}
